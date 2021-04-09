@@ -1,0 +1,129 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "bom-support-console-web",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "@emotion/styled",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "@emotion/styled"
+      },
+      "library": {
+        "style": "@emotion/styled",
+        "linter": "eslint"
+      }
+    }
+  },
+  "projects": {
+    "bom-support-console-web": {
+      "root": "apps/bom-support-console-web",
+      "sourceRoot": "apps/bom-support-console-web/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/bom-support-console-web",
+            "index": "apps/bom-support-console-web/src/index.html",
+            "main": "apps/bom-support-console-web/src/main.tsx",
+            "polyfills": "apps/bom-support-console-web/src/polyfills.ts",
+            "tsConfig": "apps/bom-support-console-web/tsconfig.app.json",
+            "assets": [
+              "apps/bom-support-console-web/src/favicon.ico",
+              "apps/bom-support-console-web/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/bom-support-console-web/src/environments/environment.ts",
+                  "with": "apps/bom-support-console-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "bom-support-console-web:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "bom-support-console-web:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/bom-support-console-web/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/bom-support-console-web"],
+          "options": {
+            "jestConfig": "apps/bom-support-console-web/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "bom-support-console-web-e2e": {
+      "root": "apps/bom-support-console-web-e2e",
+      "sourceRoot": "apps/bom-support-console-web-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/bom-support-console-web-e2e/cypress.json",
+            "tsConfig": "apps/bom-support-console-web-e2e/tsconfig.e2e.json",
+            "devServerTarget": "bom-support-console-web:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bom-support-console-web:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/bom-support-console-web-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
