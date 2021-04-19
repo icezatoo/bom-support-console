@@ -7,12 +7,21 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - 'main'
 jobs:
-  build:
+  build-deploy-firebase:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.3
-      - uses: actions/setup-node@v2
-      - run: npm run build
+      - uses: actions/setup-node@v1
+      #fetch git
+      - run: git fetch origin master
+      # Run npm install
+      - name: npm install
+        run: npm install
+      #  Build application
+      - uses: MansaGroup/nrwl-nx-action@v2.1.0
+        with:
+          targets: lint,build
+      # Deploy to firebase
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
