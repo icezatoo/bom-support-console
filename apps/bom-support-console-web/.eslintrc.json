@@ -5,7 +5,10 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["apps/bom-support-console-web/tsconfig.*?.json"]
+        "project": [
+          "apps/bom-support-console-web/tsconfig.*?.json",
+          "apps/bom-support-console-web/.storybook/tsconfig.json"
+        ]
       },
       "rules": {}
     },
