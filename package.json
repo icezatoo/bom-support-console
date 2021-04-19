@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test",
+    "start": "npx nx serve",
+    "build": "npx nx build",
+    "test": "npx nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
     "affected:apps": "nx affected:apps",
