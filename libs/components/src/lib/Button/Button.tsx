@@ -10,24 +10,27 @@ export enum Color {
 export type ButtonProps = {
   color?: string;
   children?: React.ReactNode;
+  onClick: () => void;
 };
 
-const Button: FC<ButtonProps> = ({ color = 'default', children }) => {
+const Button: FC<ButtonProps> = ({ color = 'default', children, onClick }) => {
   switch (color) {
     case Color.primary:
       return (
-        <ButtonPrimary data-testid="color-primary">{children}</ButtonPrimary>
+        <ButtonPrimary data-testid="color-primary" onClick={onClick}>
+          {children}
+        </ButtonPrimary>
       );
 
     case Color.secondary:
       return (
-        <ButtonSecondary data-testid="color-secondary">
+        <ButtonSecondary data-testid="color-secondary" onClick={onClick}>
           {children}
         </ButtonSecondary>
       );
 
     default:
-      return <StyledButton>{children}</StyledButton>;
+      return <StyledButton onClick={onClick}>{children}</StyledButton>;
   }
 };
 
